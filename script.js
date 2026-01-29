@@ -1,6 +1,3 @@
-// ---------------------------------------------
-// LÓGICA DE PANTALLAS (sin sonidos)
-// ---------------------------------------------
 let index = 0;
 const screens = document.querySelectorAll('.screen');
 const total = screens.length;
@@ -16,9 +13,6 @@ function showScreen(i) {
   });
 }
 
-// ---------------------------------------------
-// NAVEGACIÓN HACIA ADELANTE
-// ---------------------------------------------
 function next() {
   if (!locked) {
     locked = true;
@@ -28,9 +22,6 @@ function next() {
   }
 }
 
-// ---------------------------------------------
-// NAVEGACIÓN HACIA ATRÁS
-// ---------------------------------------------
 function prev() {
   if (!locked) {
     locked = true;
@@ -40,17 +31,11 @@ function prev() {
   }
 }
 
-// ---------------------------------------------
-// SCROLL EN ORDENADOR
-// ---------------------------------------------
 window.addEventListener('wheel', (e) => {
   if (e.deltaY > 0) next();
   else prev();
 });
 
-// ---------------------------------------------
-// SWIPE EN MÓVIL (para asegurar compatibilidad)
-// ---------------------------------------------
 let touchStartY = 0;
 
 window.addEventListener('touchstart', (e) => {
@@ -67,7 +52,4 @@ window.addEventListener('touchend', (e) => {
   else prev();
 });
 
-// ---------------------------------------------
-// INICIO
-// ---------------------------------------------
 showScreen(index);
