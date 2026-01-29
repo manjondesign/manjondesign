@@ -1,0 +1,154 @@
+/* ------------------------------
+   RESET
+------------------------------ */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overscroll-behavior: none;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+/* ------------------------------
+   CONTENEDOR PRINCIPAL
+------------------------------ */
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;   /* altura real del dispositivo */
+}
+
+/* ------------------------------
+   PANTALLAS SUPERPUESTAS
+------------------------------ */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+
+  z-index: 0;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/* ------------------------------
+   LOGOS
+------------------------------ */
+.logo {
+  width: 50vw;
+  max-width: 440px;   
+  min-width: 200px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* --- MÓVIL: logo grande --- */
+@media (max-width: 900px) {
+  .logo {
+    width: 90vw;      
+    max-width: 90vw;  
+    height: auto;
+  }
+}
+
+.screen.active .logo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------
+   PICTO EMAIL
+------------------------------ */
+.picto-email svg {
+  width: 140px;
+  height: 98px;
+}
+
+.picto-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  color: #333;
+  text-decoration: none;
+}
+
+.screen.active .picto-email {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- MÓVIL: sobre más pequeño --- */
+@media (max-width: 900px) {
+  .picto-email svg {
+    width: 110px;
+    height: 78px;
+  }
+}
+
+/* ------------------------------
+   FONDOS DE EMAIL
+------------------------------ */
+.email { background: #f5f5f5; }
+.email-1 { background: #f2e9e4; }
+.email-2 { background: #e8f3ff; }
+.email-3 { background: #f7f7d4; }
+.email-4 { background: #e9f7ef; }
+
+/* -----------------------------------------
+   MICRO‑LATIDO + LEVE ASCENSO (visible en móvil)
+----------------------------------------- */
+@keyframes emailPulseMobile {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(1.05) translateY(-3px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Solo en pantallas activas */
+.screen.active .picto-email {
+  animation: emailPulseMobile 2.8s ease-in-out infinite;
+}
+
+/* --- MÓVIL HORIZONTAL: evitar desbordes y centrar --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .logo {
+    width: auto;
+    height: 70vh;        /* se adapta a la altura */
+    max-height: 70vh;
+    max-width: 90vw;     /* aire lateral */
+  }
+}
+
+/* --- ESCRITORIO HORIZONTAL: logo más grande --- */
+@media (min-width: 1200px) and (min-aspect-ratio: 16/10) {
+  .logo {
+    max-width: 520px;    /* presencia editorial */
+  }
+}
+
+/* --- VENTANAS VERTICALES (solo escritorio/tablet) --- */
+@media (max-aspect-ratio: 3/4) and (min-width: 900px) {
+  .logo {
+    width: 60vw;
+    max-width: 360px;    /* equilibrio en vertical */
+  }
+}
+
+
