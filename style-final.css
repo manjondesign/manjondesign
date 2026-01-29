@@ -16,7 +16,7 @@ html, body {
 .stage {
   position: relative;
   width: 100vw;
-  height: 100dvh;   /* altura real del dispositivo */
+  height: 100dvh;
 }
 
 /* ------------------------------
@@ -47,7 +47,7 @@ html, body {
 ------------------------------ */
 .logo {
   width: 50vw;
-  max-width: 440px;   
+  max-width: 440px;
   min-width: 200px;
   height: auto;
   opacity: 0;
@@ -58,9 +58,8 @@ html, body {
 /* --- MÓVIL: logo grande --- */
 @media (max-width: 900px) {
   .logo {
-    width: 90vw;      
-    max-width: 90vw;  
-    height: auto;
+    width: 90vw;
+    max-width: 90vw;
   }
 }
 
@@ -98,8 +97,16 @@ html, body {
 /* --- MÓVIL: sobre más pequeño --- */
 @media (max-width: 900px) {
   .picto-email svg {
-    width: 110px;
-    height: 78px;
+    width: 80px;
+    height: 56px;
+  }
+}
+
+/* --- MÓVIL MUY PEQUEÑO --- */
+@media (max-width: 480px) {
+  .picto-email svg {
+    width: 70px;
+    height: 48px;
   }
 }
 
@@ -113,7 +120,7 @@ html, body {
 .email-4 { background: #e9f7ef; }
 
 /* -----------------------------------------
-   MICRO‑LATIDO + LEVE ASCENSO (visible en móvil)
+   MICRO‑LATIDO
 ----------------------------------------- */
 @keyframes emailPulseMobile {
   0%   { transform: scale(1) translateY(0); }
@@ -121,34 +128,37 @@ html, body {
   100% { transform: scale(1) translateY(0); }
 }
 
-/* Solo en pantallas activas */
 .screen.active .picto-email {
   animation: emailPulseMobile 2.8s ease-in-out infinite;
 }
 
-/* --- MÓVIL HORIZONTAL: evitar desbordes y centrar --- */
+/* --- MÓVIL HORIZONTAL --- */
 @media (max-height: 500px) and (orientation: landscape) {
   .logo {
     width: auto;
-    height: 70vh;        /* se adapta a la altura */
+    height: 70vh;
     max-height: 70vh;
-    max-width: 90vw;     /* aire lateral */
+    max-width: 90vw;
   }
 }
 
-/* --- ESCRITORIO HORIZONTAL: logo más grande --- */
+/* --- ESCRITORIO HORIZONTAL --- */
 @media (min-width: 1200px) and (min-aspect-ratio: 16/10) {
   .logo {
-    max-width: 520px;    /* presencia editorial */
+    max-width: 520px;
   }
 }
 
-/* --- VENTANAS VERTICALES (solo escritorio/tablet) --- */
+/* --- VENTANAS VERTICALES --- */
 @media (max-aspect-ratio: 3/4) and (min-width: 900px) {
   .logo {
     width: 60vw;
-    max-width: 360px;    /* equilibrio en vertical */
+    max-width: 360px;
   }
 }
 
-
+/* ------------------------------
+   SAFARI FIX
+------------------------------ */
+@supports (-webkit-touch-callout: none) {
+  .stage {
